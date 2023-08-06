@@ -25,7 +25,7 @@ function Table({ data, initial}) {
             <td>{formatter.format(item.savingsEndOfYear)}</td>
             <td>{formatter.format(item.yearlyInterest)}</td>
             <td>{formatter.format(item.savingsEndOfYear-initial-item.yearlyContribution*item.year)}</td>
-            <td>{formatter.format(item.yearlyContribution*item.year)}</td>
+            <td>{formatter.format(initial+item.yearlyContribution*item.year)}</td>
           </tr>
         );
         })}

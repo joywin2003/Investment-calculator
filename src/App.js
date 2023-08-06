@@ -33,7 +33,7 @@ function App() {
       <Form
         onCalculate = {calculateHandler}
       />
-      {!userInput && <p>No Investment calculated</p>}
+      {!userInput && <p style = {{textAlign:"center",fontSize:"1.5rem"}}>No Investment calculated</p>}
       {userInput &&<Table data={yearlyData} initial = {userInput["current-savings"]}/>}
     </div>
   );
