@@ -1,7 +1,3 @@
-import InputGroup from "./forms/Inputgroup";
-import InterestInputGroup from "./forms/InterestInputGroup";
-import Action from "./forms/Action";
-import '../index.css';
 import { useState } from "react";
 
 
@@ -16,7 +12,7 @@ function Form(props) {
     const [userInput, setUserInput] = useState(initialUserInput);
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log("submitted");
+        props.onCalculate(userInput);
     }
     const resetHandler = (e) => {
         setUserInput(initialUserInput);
@@ -29,20 +25,6 @@ function Form(props) {
             }}
         )
     }
-
-    const {
-        currentSaving,
-        setCurrentSaving,
-        yearlyContribution,
-        setYearlyContribution,
-        expectedInterest,
-        setExpectedInterest,
-        investmentDuration,
-        setInvestmentDuration,
-        takeAction,
-        setTakeAction,
-        calculateHandler,
-    } = props;
     return (
         <form onSubmit={submitHandler} className="form">
             <div className="input-group">

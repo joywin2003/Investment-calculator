@@ -4,46 +4,31 @@ import Form from "./compenents/Form";
 import { useState } from "react";
 
 function App() {
-  const [currentSaving, setCurrentSaving] = useState();
-  const [yearlyContribution, setYearlyContribution] = useState();
-  const [expectedInterest, setExpectedInterest] = useState();
-  const [investmentDuration, setInvestmentDuration] = useState();
-  const [takeAction, setTakeAction] = useState(false);
-  const [yearlyData, setYearlyData] = useState([]);
-
   const calculateHandler = (userInput) => {
-    const yearlyData = []; // per-year results
-    for (let i = 0; i < investmentDuration; i++) {
-      const yearlyInterest = currentSaving * expectedInterest;
-      currentSaving += yearlyInterest + yearlyContribution;
+
+    const yearlyData = []; 
+
+    let currentSavings = +userInput['current-savings']; 
+    const yearlyContribution = +userInput['yearly-contribution']; 
+    const expectedReturn = +userInput['expected-return'] / 100;
+    const duration = +userInput['duration'];
+
+    for (let i = 0; i < duration; i++) {
+      const yearlyInterest = currentSavings * expectedReturn;
+      currentSavings += yearlyInterest + yearlyContribution;
       yearlyData.push({
         year: i + 1,
         yearlyInterest: yearlyInterest,
-        savingsEndOfYear: currentSaving,
+        savingsEndOfYear: currentSavings,
         yearlyContribution: yearlyContribution,
       });
     }
-    setYearlyData(yearlyData);
-    setCurrentSaving();
-    setYearlyContribution();
-    setExpectedInterest();
-    setInvestmentDuration();
   };
   return (
     <div>
       <Header />
       <Form
-        currentSaving={currentSaving}
-        setCurrentSaving={setCurrentSaving}
-        yearlyContribution={yearlyContribution}
-        setYearlyContribution={setYearlyContribution}
-        expectedInterest={expectedInterest}
-        setExpectedInterest={setExpectedInterest}
-        investmentDuration={investmentDuration}
-        setInvestmentDuration={setInvestmentDuration}
-        takeAction={takeAction}
-        setTakeAction={setTakeAction}
-        calculateHandler = {calculateHandler}
+        onCalculate = {calculateHandler}
       />
       <Table data={yearlyData}/>
     </div>
