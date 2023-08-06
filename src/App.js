@@ -4,10 +4,14 @@ import Form from "./compenents/Form";
 import { useState } from "react";
 
 function App() {
+  const [userInput, setUserInput] = useState(null);
   const calculateHandler = (userInput) => {
-
+    setUserInput(userInput);
+    }
     const yearlyData = []; 
 
+
+    if(userInput){
     let currentSavings = +userInput['current-savings']; 
     const yearlyContribution = +userInput['yearly-contribution']; 
     const expectedReturn = +userInput['expected-return'] / 100;
@@ -21,8 +25,7 @@ function App() {
         yearlyInterest: yearlyInterest,
         savingsEndOfYear: currentSavings,
         yearlyContribution: yearlyContribution,
-      });
-    }
+      });}
   };
   return (
     <div>
@@ -30,7 +33,8 @@ function App() {
       <Form
         onCalculate = {calculateHandler}
       />
-      <Table data={yearlyData}/>
+      {!userInput && <p>No Investment calculated</p>}
+      {userInput &&<Table data={yearlyData} initial = {userInput["current-savings"]}/>}
     </div>
   );
 }

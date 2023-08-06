@@ -1,6 +1,11 @@
 
-
-function Table({ data }) {
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+function Table({ data, initial}) {
   return (
     <table className="result">
       <thead>
@@ -17,9 +22,10 @@ function Table({ data }) {
           return(
           <tr key={index}>
             <td>{item.year}</td>
-            <td>{item.savingsEndOfYear}</td>
-            <td>{item.yearlyInterest}</td>
-            <td>{item.yearlyContribution}</td>
+            <td>{formatter.format(item.savingsEndOfYear)}</td>
+            <td>{formatter.format(item.yearlyInterest)}</td>
+            <td>{formatter.format(item.savingsEndOfYear-initial-item.yearlyContribution*item.year)}</td>
+            <td>{formatter.format(item.yearlyContribution*item.year)}</td>
           </tr>
         );
         })}
