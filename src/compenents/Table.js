@@ -1,20 +1,31 @@
-import Investment from "./Investment";
 
-function Table(){
-    return(
-        <table className="result">
-        <thead>
-          <tr>
-            <th>Year</th>
-            <th>Total Savings</th>
-            <th>Interest (Year)</th>
-            <th>Total Interest</th>
-            <th>Invested Capital</th>
+
+function Table({ data }) {
+  return (
+    <table className="result">
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Total Savings</th>
+          <th>Interest (Year)</th>
+          <th>Total Interest</th>
+          <th>Invested Capital</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((item, index) => {
+          return(
+          <tr key={index}>
+            <td>{item.year}</td>
+            <td>{item.savingsEndOfYear}</td>
+            <td>{item.yearlyInterest}</td>
+            <td>{item.yearlyContribution}</td>
           </tr>
-        </thead>
-        <Investment/>
-</table>
-    )
+        );
+        })}
+      </tbody>
+    </table>
+  )
 }
 
 export default Table;

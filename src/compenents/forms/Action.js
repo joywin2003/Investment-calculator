@@ -1,16 +1,20 @@
-function Action({ onClick }) {
+function Action({ onClick,setTakeAction }) {
   return (
     <p className="actions">
       <button
         type="reset"
         className="buttonAlt"
-        onClick={onClick}>
+        onClick={()=>setTakeAction(false)}>
         Reset
       </button>
       <button
         type="submit"
         className="button"
-        onChange={onClick}>
+        onClick={() => {
+          onClick();
+          setTakeAction(true);
+        }}
+          >
         Calculate
       </button>
     </p>

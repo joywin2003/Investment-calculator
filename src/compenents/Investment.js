@@ -1,15 +1,16 @@
-function Investment(){
-    return(
-        <tbody>
-          <tr>
-            <td>YEAR NUMBER</td>
-            <td>TOTAL SAVINGS END OF YEAR</td>
-            <td>INTEREST GAINED IN YEAR</td>
-            <td>TOTAL INTEREST GAINED</td>
-            <td>TOTAL INVESTED CAPITAL</td>
-          </tr>
-        </tbody>
-    )
+function Investment({ data }) {
+  return (
+    <tbody>
+      {data.map((item, index) => {
+        <tr key={index}>
+          <td>{item.year}</td>
+          <td>{item.savingsEndOfYear}</td>
+          <td>{item.yearlyInterest}</td>
+          <td>{item.yearlyContribution}</td>
+        </tr>
+      })}
+    </tbody>
+  )
 }
 
 export default Investment;

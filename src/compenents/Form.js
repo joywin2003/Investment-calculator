@@ -6,6 +6,14 @@ import { useState } from "react";
 
 
 function Form(props) {
+    const submitHandler = (e) => {
+        e.preventDefault();
+        console.log("submitted");
+    }
+    const resetHandler = (e) => {
+        e.preventDefault();
+        console.log("reset");
+    }
     const {
         currentSaving,
         setCurrentSaving,
@@ -18,9 +26,9 @@ function Form(props) {
         takeAction,
         setTakeAction,
         calculateHandler,
-      } = props;
+    } = props;
     return (
-        <form className="form" >
+        <form onSubmit= {submitHandler} className="form" >
             <InputGroup
                 currentSaving={currentSaving}
                 yearlyContribution={yearlyContribution}
@@ -33,7 +41,9 @@ function Form(props) {
                 setExpectedInterest={setExpectedInterest}
                 setInvestmentDuration={setInvestmentDuration}
             />
-            <Action onClick={calculateHandler} />
+            <Action
+                setTakeAction={setTakeAction}
+                onClick={calculateHandler} />
         </form>
     )
 }

@@ -9,6 +9,7 @@ function App() {
   const [expectedInterest, setExpectedInterest] = useState();
   const [investmentDuration, setInvestmentDuration] = useState();
   const [takeAction, setTakeAction] = useState(false);
+  const [yearlyData, setYearlyData] = useState([]);
 
   const calculateHandler = (userInput) => {
     const yearlyData = []; // per-year results
@@ -22,6 +23,7 @@ function App() {
         yearlyContribution: yearlyContribution,
       });
     }
+    setYearlyData(yearlyData);
     setCurrentSaving();
     setYearlyContribution();
     setExpectedInterest();
@@ -43,7 +45,7 @@ function App() {
         setTakeAction={setTakeAction}
         calculateHandler = {calculateHandler}
       />
-      <Table/>
+      <Table data={yearlyData}/>
     </div>
   );
 }
