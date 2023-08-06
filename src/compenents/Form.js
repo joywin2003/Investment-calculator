@@ -5,36 +5,35 @@ import '../index.css';
 import { useState } from "react";
 
 
-function Form() {
-    const [currentSaving, setCurrentSaving] = useState();
-    const [yearlyContribution, setYearlyContribution] = useState();
-    const [expectedInterest, setExpectedInterest] = useState();
-    const [investmentDuration, setInvestmentDuration] = useState();
-    const [takeAction, setTakeAction] = useState(false);
-
-    const calculateHandler = (userInput) => {
-        setCurrentSaving();
-        setYearlyContribution();
-        setExpectedInterest();
-        setInvestmentDuration();
-      };
-
+function Form(props) {
+    const {
+        currentSaving,
+        setCurrentSaving,
+        yearlyContribution,
+        setYearlyContribution,
+        expectedInterest,
+        setExpectedInterest,
+        investmentDuration,
+        setInvestmentDuration,
+        takeAction,
+        setTakeAction,
+        calculateHandler,
+      } = props;
     return (
         <form className="form" >
             <InputGroup
                 currentSaving={currentSaving}
-                yearlyContribution={yearlyContribution} 
-                setCurrentSaving = {setCurrentSaving}
-                setYearlyContribution = {setYearlyContribution}
-                />
-            <InterestInputGroup 
+                yearlyContribution={yearlyContribution}
+                setCurrentSaving={setCurrentSaving}
+                setYearlyContribution={setYearlyContribution}
+            />
+            <InterestInputGroup
                 expectedInterest={expectedInterest}
                 investmentDuration={investmentDuration}
-                setExpectedInterest = {setExpectedInterest}
-                setInvestmentDuration= {setInvestmentDuration}
+                setExpectedInterest={setExpectedInterest}
+                setInvestmentDuration={setInvestmentDuration}
             />
-
-            <Action onClick={calculateHandler}/>
+            <Action onClick={calculateHandler} />
         </form>
     )
 }
