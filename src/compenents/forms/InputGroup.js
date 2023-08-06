@@ -1,4 +1,4 @@
-function InputGroup({ currentSaving, yearlyContribution }) {
+function InputGroup({ currentSaving, yearlyContribution,setCurrentSaving,setYearlyContribution }) {
   return (
     <div className="input-group">
       <p>
@@ -7,6 +7,7 @@ function InputGroup({ currentSaving, yearlyContribution }) {
           type="number"
           id="current-savings"
           value={currentSaving}
+          onChange={(e) => setCurrentSaving(e.target.value)}
         />
       </p>
       <p>
@@ -15,6 +16,7 @@ function InputGroup({ currentSaving, yearlyContribution }) {
           type="number"
           id="yearly-contribution"
           value={yearlyContribution}
+          onChange={(e) => setYearlyContribution(e.target.value)}
         />
       </p>
     </div>

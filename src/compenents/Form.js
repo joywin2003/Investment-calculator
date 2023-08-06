@@ -6,25 +6,35 @@ import { useState } from "react";
 
 
 function Form() {
-    const [currentSaving, setCurrentSaving] = useState(0);
-    const [yearlyContribution, setYearlyContribution] = useState(0);
-    const [expectedInterest, setExpectedInterest] = useState(0);
-    const [investmentDuration, setInvestmentDuration] = useState(0);
+    const [currentSaving, setCurrentSaving] = useState();
+    const [yearlyContribution, setYearlyContribution] = useState();
+    const [expectedInterest, setExpectedInterest] = useState();
+    const [investmentDuration, setInvestmentDuration] = useState();
     const [takeAction, setTakeAction] = useState(false);
 
-    
+    const calculateHandler = (userInput) => {
+        setCurrentSaving();
+        setYearlyContribution();
+        setExpectedInterest();
+        setInvestmentDuration();
+      };
 
     return (
         <form className="form" >
             <InputGroup
                 currentSaving={currentSaving}
-                yearlyContribution={yearlyContribution} />
+                yearlyContribution={yearlyContribution} 
+                setCurrentSaving = {setCurrentSaving}
+                setYearlyContribution = {setYearlyContribution}
+                />
             <InterestInputGroup 
                 expectedInterest={expectedInterest}
                 investmentDuration={investmentDuration}
+                setExpectedInterest = {setExpectedInterest}
+                setInvestmentDuration= {setInvestmentDuration}
             />
 
-            <Action />
+            <Action onClick={calculateHandler}/>
         </form>
     )
 }

@@ -1,4 +1,4 @@
-function InterestInputGroup({ expectedInterest, investmentDuration }) {
+function InterestInputGroup({ expectedInterest, investmentDuration, setExpectedInterest, setInvestmentDuration}) {
   return (
     <div className="input-group">
       <p>
@@ -9,6 +9,7 @@ function InterestInputGroup({ expectedInterest, investmentDuration }) {
           type="number"
           id="expected-return"
           value={expectedInterest}
+          onChange={(e) => setExpectedInterest(e.target.value)}
         />
       </p>
       <p>
@@ -17,6 +18,7 @@ function InterestInputGroup({ expectedInterest, investmentDuration }) {
           type="number"
           id="duration"
           value={investmentDuration}
+          onChange={(e) => setInvestmentDuration(e.target.value)}
         />
       </p>
     </div>
